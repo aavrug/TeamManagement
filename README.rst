@@ -5,6 +5,8 @@ TeamManagement
 
 TeamManagement is for managing teams.
 
+We need virtualenv if that is in your system then ok or for installation follow the link https://virtualenv.pypa.io/en/stable/installation/
+
 Steps for Setup
 ======================================================
 
@@ -26,6 +28,20 @@ Database Setup
 ======================================================
 
 Create a new database TeamManagement and change MySQL credentials as per your configuration in "settings.py".
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'TeamManagement',
+            'USER': 'Your MySQL Username',
+            'PASSWORD': 'Your MySQL Password',
+            'HOST': 'localhost',
+            'PORT': '',
+        }
+    }
+
+
+From TeamManagementProject directory run the command
 
     python manage.py migrate
 
