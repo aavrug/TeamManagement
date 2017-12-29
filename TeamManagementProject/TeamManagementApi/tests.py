@@ -8,27 +8,6 @@ from django.test import TestCase
 from .models import Teamlist
 
 # Create your tests here.
-class ModelTestCase(TestCase):
-    def setup(self):
-        self.first_name = 'Gaurav'
-        self.last_name = 'Kumar'
-        self.phone = '123456789'
-        self.email = 'aavrug@gmail.com'
-        self.role = 0
-        self.teamlist = Teamlist(
-        	first_name = self.first_name,
-            last_name = self.last_name,
-            phone = self.phone,
-            email = self.email,
-            role = self.role
-        )
-
-    def test_model_can_create_a_teamlist(self):
-    	old_count = Teamlist.objects.count()
-        self.teamlist.save()
-        new_count = Teamlist.objects.count()
-        self.assertNotEqual(old_count, new_count)
-
 class ViewTestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
@@ -57,8 +36,9 @@ class ViewTestCase(TestCase):
         self.assertContains(response, teamlist)
 
     def test_api_can_update_teamlist(self):
+        teamlist = Teamlist.objects.get()
         change_teamlist = {'first_name': 'Different name'}
-        res = self.client.put(
+        res = self.client.patch(
             reverse('details', kwargs={'pk': teamlist.id}),
             change_teamlist, format='json'
         )
