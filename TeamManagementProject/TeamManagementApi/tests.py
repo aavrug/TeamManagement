@@ -33,7 +33,6 @@ class ViewTestCase(TestCase):
             kwargs={'pk': teamlist.id}), format="json")
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertContains(response, teamlist)
 
     def test_api_can_update_teamlist(self):
         teamlist = Teamlist.objects.get()
